@@ -17,7 +17,7 @@ if (!isset($_SESSION["user_id"])) {
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - FindIt</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=1">
 </head>
 
 <body>
