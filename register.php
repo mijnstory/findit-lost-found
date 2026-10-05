@@ -1,35 +1,42 @@
 <?php
-// Haal de databaseverbinding op
+// Databaseverbinding ophalen
 require_once "config/database.php";
 
-// Variabele voor meldingen aan de gebruiker
 $message = "";
 
 // Controleer of het formulier is verstuurd
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Haal de ingevulde gegevens op
+    // Gegevens uit het formulier halen
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
     $password = $_POST["password"];
 
-    // Controleer of alle velden zijn ingevuld
+    // Basiscontrole
     if (empty($name) || empty($email) || empty($password)) {
+
         $message = "Vul alle velden in.";
+
+    } elseif (strlen($password) < 8) {
+
+        $message = "Wachtwoord moet minimaal 8 tekens zijn.";
+
     } else {
 
-        // Controleer of het e-mailadres al bestaat
+        // Controleer of e-mailadres al bestaat
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
 
         if ($stmt->fetch()) {
-            $message = "Dit e-mailadres is al geregistreerd.";
+
+            $message = "Dit e-mailadres bestaat al.";
+
         } else {
 
-            // Maak van het wachtwoord een veilige hash
+            // Wachtwoord veilig opslaan
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Voeg de nieuwe gebruiker toe aan de database
+            // Gebruiker toevoegen
             $stmt = $pdo->prepare(
                 "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
             );
@@ -59,28 +66,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h1>Registreren</h1>
 
-    <!-- Toon een melding als er iets is gebeurd -->
+    <!-- Melding tonen -->
     <?php if (!empty($message)): ?>
         <p><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
 
     <!-- Registratieformulier -->
-    <form method="POST" action="">
+    <form method="POST">
 
-        <label for="name">Naam:</label>
-        <input type="text" id="name" name="name" required>
+        <label>Naam:</label>
+        <input type="text" name="name" required>
 
-        <br><br>
+        <label>E-mailadres:</label>
+        <input type="email" name="email" required>
 
-        <label for="email">E-mailadres:</label>
-        <input type="email" id="email" name="email" required>
-
-        <br><br>
-
-        <label for="password">Wachtwoord:</label>
-        <input type="password" id="password" name="password" required>
-
-        <br><br>
+        <label>Wachtwoord:</label>
+        <input type="password" name="password" minlength="8" required>
 
         <button type="submit">Registreren</button>
 
