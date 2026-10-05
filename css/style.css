@@ -1,25 +1,36 @@
-/* Algemene opmaak van de website */
+/* Basis */
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7f7f7;
     color: #222;
 }
 
-/* Hoofdtitels */
+/* Titels */
 h1 {
-    color: #1f3c5c;
+    margin-top: 0;
+    font-size: 32px;
+    color: #111;
 }
 
-/* Subtitels van voorwerpen */
 h2 {
-    color: #333;
+    color: #222;
+}
+
+/* Tekst */
+p {
+    line-height: 1.6;
+    color: #444;
 }
 
 /* Links */
 a {
-    color: #1565c0;
+    color: #222;
     text-decoration: none;
 }
 
@@ -27,18 +38,48 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Dashboard menu */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+    max-width: 600px;
+}
+
+ul li {
+    margin-bottom: 12px;
+}
+
+ul li a {
+    display: block;
+    background-color: white;
+    padding: 16px 18px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+ul li a:hover {
+    background-color: #f1f1f1;
+    text-decoration: none;
+}
+
 /* Formulieren */
 form {
     background-color: white;
-    padding: 20px;
-    max-width: 500px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    padding: 28px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
 }
 
 /* Labels */
 label {
-    font-weight: bold;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
 }
 
 /* Invoervelden */
@@ -46,49 +87,73 @@ input,
 textarea,
 select {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    box-sizing: border-box;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: white;
 }
 
-/* Tekstvak iets groter maken */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #888;
+}
+
+/* Tekstvak */
 textarea {
-    min-height: 100px;
+    min-height: 120px;
+    resize: vertical;
 }
 
 /* Knoppen */
 button {
-    background-color: #1f3c5c;
+    background-color: #111;
     color: white;
     border: none;
-    padding: 10px 18px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
     cursor: pointer;
-    border-radius: 5px;
 }
 
 button:hover {
-    background-color: #315b82;
+    background-color: #333;
 }
 
-/* Lijst op dashboard */
-ul {
+/* Kaarten voor items */
+body > div {
     background-color: white;
-    max-width: 500px;
-    padding: 20px 40px;
-    border-radius: 8px;
+    max-width: 750px;
+    padding: 22px;
+    margin-bottom: 18px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
 }
 
-/* Blokken met gevonden/verloren voorwerpen */
-div {
-    background-color: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    max-width: 700px;
-    border-radius: 8px;
-}
-
-/* Horizontale lijn tussen meldingen */
+/* Scheidingslijn */
 hr {
     border: 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 20px;
+}
+
+/* Mobiel */
+@media (max-width: 700px) {
+    body {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    form,
+    ul,
+    body > div {
+        width: 100%;
+        max-width: 100%;
+    }
 }
