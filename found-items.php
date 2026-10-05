@@ -78,6 +78,17 @@ $foundItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php echo htmlspecialchars($item["status"]); ?>
                 </p>
 
+                <!-- Alleen medewerkers mogen de status aanpassen -->
+                <?php if ($_SESSION["role"] == "medewerker"): ?>
+
+                    <p>
+                        <a href="update-status.php?id=<?php echo $item["id"]; ?>&type=found">
+                            Status wijzigen
+                        </a>
+                    </p>
+
+                <?php endif; ?>
+
                 <hr>
 
             </div>
