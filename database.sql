@@ -1,8 +1,3 @@
--- Maak de database aan als deze nog niet bestaat
-CREATE DATABASE IF NOT EXISTS findit_db;
-
--- Selecteer de database
-USE findit_db;
 
 -- Tabel voor gebruikers
 CREATE TABLE users (
